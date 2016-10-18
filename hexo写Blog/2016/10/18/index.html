@@ -93,7 +93,7 @@
 <meta property="og:image" content="https://i.gyazo.com/adbe3fa8603ccc58f7a7695bd8ca1b60.png">
 <meta property="og:image" content="https://i.gyazo.com/d2473dab4767c92adc9eadf59f9f0d34.png">
 <meta property="og:image" content="https://i.gyazo.com/328d7542167c802f0ebf26f94e397a39.png">
-<meta property="og:updated_time" content="2016-10-18T11:09:19.329Z">
+<meta property="og:updated_time" content="2016-10-18T11:12:14.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo搭建Blog">
 <meta name="twitter:description" content="书接上上一回！上上一回讲了用jeklly写Blog，不知道你们做的怎么样？Blog主第一次做出来的Blog就是用jeklly弄的，图片就不放上来了，因为Blog现在已经改用Hexo了，就不再折腾了（我才不会告诉你第一个Blog有多么简洁！）此处应会有人问为什么要换成Hexo而不继续用Jeklly呢？这个问题问得好，虽然说Jeklly是Github官方标配，但是整个Layout都需要自己写，不然，你">
@@ -323,7 +323,7 @@
 <p>还有其他东东，以及怎样去修改主题，我们下回分解！</p>
 <hr>
 <h3 id="第三步：-关联Github"><a href="#第三步：-关联Github" class="headerlink" title="第三步： 关联Github"></a>第三步： 关联Github</h3><p>初始化之后，整个搭建的架构就出来了，剩下就是和Github关联了。<br>首先，修改目录下的 <strong>_config.yml</strong> 配置文件，额，可能会有人问，怎么打开。。没事，我不会笑你的，因为我也是小白，个人推荐：<strong>Notepad++</strong> 没有为什么就这么任性~！<br>打开配置文件，拉到最下面，看到<strong>deploy</strong>没有？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:    # 照下面填上去</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/username/username.github.io</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
-<p>然后很关键的一步：将你的repository clone到 <strong>.deploy_git</strong> 文件夹里面，你可以从网页上clone，也可以从PC端clone下来，如果是PC端的话，请看下图：<img src="https://i.gyazo.com/d2473dab4767c92adc9eadf59f9f0d34.png" alt=""><br>然后选择 <strong>.deploy_git</strong>文件，clone下来就可以了。<br>完了后，打开<strong>deploy_git</strong>文件，你会发现多了一个文件 <strong>username.github.io</strong> 对，就是它，进入里面，找到 <strong>.git</strong> 文件，然后讲它剪切到上一个文件夹（<strong>.deploy_git</strong>）中，<strong>如果你找不到的话，把查看隐藏文件的开关打开，因为这个文件是隐藏的</strong><br>这样做的目的是将Github PC端 定位到Hexo的Blog文件去，而定位就是靠隐藏的<strong>.git</strong>这个文件决定的！  </p>
+<p>然后很关键的一步：将你的repository clone到 <strong>.deploy_git</strong> 文件夹里面，你可以从网页上clone，也可以从PC端clone下来，如果是PC端的话，请看下图：<img src="https://i.gyazo.com/d2473dab4767c92adc9eadf59f9f0d34.png" alt=""><br>然后选择 <strong>.deploy_git</strong>文件，clone下来就可以了。<br>完了后，打开<strong>deploy_git</strong>文件，你会发现多了一个文件 <strong>username.github.io</strong> 对，就是它，进入里面，找到 <strong>.git</strong> 文件，然后讲它剪切到上一个文件夹（<strong>.deploy_git</strong>）中，<strong>如果你找不到的话，把查看隐藏文件的开关打开，因为这个文件是隐藏的</strong> 这样做的目的是将Github PC端 定位到Hexo的Blog文件去，而定位就是靠隐藏的<strong>.git</strong>这个文件决定的！  </p>
 <hr>
 <h3 id="Then：上传"><a href="#Then：上传" class="headerlink" title="Then：上传"></a>Then：上传</h3><p>打开Github PC，点 <strong>change</strong> ，然后会有一段东西在那里，没错，就是Bolg主要的东西了，然后将它们都commit上去，再点隔壁的<strong>History</strong> ，sync到Github上<img src="https://i.gyazo.com/328d7542167c802f0ebf26f94e397a39.png" alt=""><br>到这一步，Hexo的搭建基本完成了，这时候你可以打开<a href="https://JacobYRJ.github.io" title="https://Username.github.io" target="_blank" rel="external">https://JacobYRJ.github.io</a>就能看到自己的Blog了<br>当然，你也可以在本地上浏览：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure></p>
 <p>然后打开<a href="localhost:4000" target="_blank" rel="external">localhost:4000</a></p>
