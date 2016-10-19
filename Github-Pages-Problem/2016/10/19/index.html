@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://i.gyazo.com/39ec1a4689ac6d1577aafb22aa6a35b9.png">
 <meta property="og:image" content="https://i.gyazo.com/752f05253028c03e30d84d6fad1e1400.png">
 <meta property="og:image" content="https://i.gyazo.com/4e28a5bfadcb56c4656e4c977ff1be43.png">
-<meta property="og:updated_time" content="2016-10-19T13:31:08.965Z">
+<meta property="og:updated_time" content="2016-10-19T15:58:43.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Github Pages有时无法访问问题解决">
 <meta name="twitter:description" content="Github Pages有时无法访问问题解决Blog主这个星期会到学校后，本来想着上上我亲爱的小博客，看看有没有评论员什么的，却突然发现上不了了，首页还是能正常打开，但comments 和其他类似的分页却死活打不开，Blog主我一开始就蒙了，以为是配置文件上出错了，找来找去找不到，后来就干脆执行1hexo init
@@ -318,8 +318,6 @@
 <h3 id="问题找到："><a href="#问题找到：" class="headerlink" title="问题找到："></a>问题找到：</h3><p>再后来我发现问题主要原因都不在这些上面，而是HTTPS协议的问题，下面试我在github上找到的这么一段话：<img src="https://i.gyazo.com/39ec1a4689ac6d1577aafb22aa6a35b9.png" alt=""><br>隔壁是百度翻译的逗比译文，不过就算没有译文也能大概知道，github从2016.6.15起建立的github pages 将强制使用HTTPS协议，换句话说，如果用了HTTP是打不开的！而我遇到的问题就是这个，首页用了https，其他都跳到http了，结果就是首页打开了，其他的都打不开！  </p>
 <hr>
 <h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><p>知道问题之后，我就很直接地将网址栏上直接添加https，天真的我以为这次能打开了，却发现结果依然没变，MDZZ！一看网址栏，写的还是http，这我就很纳闷了，果然跟国内对Github还是很不友好，后来，在我的一个高中同学帮助下找到了解决方法，具体看<a href="http://www.williamlong.info/archives/3918.html" target="_blank" rel="external">http://www.williamlong.info/archives/3918.html</a><br>或者：<br><img src="https://i.gyazo.com/752f05253028c03e30d84d6fad1e1400.png" alt="输入下面网址"><br><img src="https://i.gyazo.com/4e28a5bfadcb56c4656e4c977ff1be43.png" alt=""><br>最后，你在重新打开看看，是不是成功了？ 反正我是成功了！  </p>
-<p>修改了后，我在百度浏览器用http居然也能打开了，更奇怪的是，后来将修改的地方删了，还是能打开，这就很尴尬了 = =！  </p>
-<p>如果有大神知道是怎么回事的话，请无条件告知，这世界需要你的分享！  </p>
 <hr>
 <h3 id="声明："><a href="#声明：" class="headerlink" title="声明："></a>声明：</h3><p><strong> 欢迎转载，转载时请注明出处，请尊重知识和劳动！</strong></p>
 
