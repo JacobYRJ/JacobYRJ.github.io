@@ -1,0 +1,849 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="导言对于大多数在win下做开发的道友来说，坑就像无底洞永远填不完，还一个接一个。最近我的电脑硬盘被win10的自动更新摧毁了，但很多写好的配置，安装的资源包都没有备份，于是所有东西都要重新开始。然后我从anaconda下载到Django成功启动项目遇到好几个之前初学时没留意到的坑，也就是这些坑，为了尽可能完善我花费了近2周的时间去填，同时也因为我能力有限，有部分坑还未填满，所以我就写这篇文章是抛砖">
+<meta property="og:type" content="article">
+<meta property="og:title" content="那些年在win下填过的Django坑">
+<meta property="og:url" content="http://yoursite.com/2017/03/14/那些年在win下填过的Django坑/index.html">
+<meta property="og:site_name" content="BREF">
+<meta property="og:description" content="导言对于大多数在win下做开发的道友来说，坑就像无底洞永远填不完，还一个接一个。最近我的电脑硬盘被win10的自动更新摧毁了，但很多写好的配置，安装的资源包都没有备份，于是所有东西都要重新开始。然后我从anaconda下载到Django成功启动项目遇到好几个之前初学时没留意到的坑，也就是这些坑，为了尽可能完善我花费了近2周的时间去填，同时也因为我能力有限，有部分坑还未填满，所以我就写这篇文章是抛砖">
+<meta property="og:image" content="https://i.gyazo.com/c9a7b233bf20b51a5090ce75b956aaad.png">
+<meta property="og:image" content="https://i.gyazo.com/b88473df9949e1cf2cc5a8616a1c4f88.png">
+<meta property="og:image" content="https://i.gyazo.com/5ab98e33738ec87fe5ff4727a36c2db0.png">
+<meta property="og:image" content="https://i.gyazo.com/8bcc7787de83b2c106612a00eac1a2b9.png">
+<meta property="og:image" content="https://i.gyazo.com/f7387492654b0d2fbc1e9a1774027d58.png">
+<meta property="og:image" content="https://i.gyazo.com/1bcd2d8e505c9593f466edace3ae9788.png">
+<meta property="og:image" content="https://i.gyazo.com/6a3eed30675690838e5a606069b24032.png">
+<meta property="og:image" content="https://i.gyazo.com/81668c40f23257f13f0e7e192f19d2c1.png">
+<meta property="og:image" content="https://i.gyazo.com/d83c0549c821609de07a743d7704de38.png">
+<meta property="og:image" content="https://i.gyazo.com/a2930430ccee4bc7034f80fb5f020721.png">
+<meta property="og:updated_time" content="2017-04-30T10:17:04.183Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="那些年在win下填过的Django坑">
+<meta name="twitter:description" content="导言对于大多数在win下做开发的道友来说，坑就像无底洞永远填不完，还一个接一个。最近我的电脑硬盘被win10的自动更新摧毁了，但很多写好的配置，安装的资源包都没有备份，于是所有东西都要重新开始。然后我从anaconda下载到Django成功启动项目遇到好几个之前初学时没留意到的坑，也就是这些坑，为了尽可能完善我花费了近2周的时间去填，同时也因为我能力有限，有部分坑还未填满，所以我就写这篇文章是抛砖">
+<meta name="twitter:image" content="https://i.gyazo.com/c9a7b233bf20b51a5090ce75b956aaad.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/14/那些年在win下填过的Django坑/"/>
+
+
+
+
+
+  <title> 那些年在win下填过的Django坑 | BREF </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BREF</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">人生苦短</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/14/那些年在win下填过的Django坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JacobYRJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BREF">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                那些年在win下填过的Django坑
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-14T00:00:00+08:00">
+                2017-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/14/那些年在win下填过的Django坑/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/14/那些年在win下填过的Django坑/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/14/那些年在win下填过的Django坑/" class="leancloud_visitors" data-flag-title="那些年在win下填过的Django坑">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>对于大多数在win下做开发的道友来说，坑就像无底洞永远填不完，还一个接一个。最近我的电脑硬盘被win10的自动更新摧毁了，但很多写好的配置，安装的资源包都没有备份，于是所有东西都要重新开始。然后我从anaconda下载到Django成功启动项目遇到好几个之前初学时没留意到的坑，也就是这些坑，为了尽可能完善我花费了近2周的时间去填，同时也因为我能力有限，有部分坑还未填满，所以我就写这篇文章是抛砖引玉了，如有其他较好的解决方案欢迎联系我！微信号：YRJ_Jacob</p>
+<blockquote><br>操作环境：<br>- win10专业版64位<br>- anaconda3-4.3.0.1<br>- python3.6.0.final.0<br>- Django1.10.0.fianl.1<br>- MySQL: Ver 14.14 Distrib 5.7.17,for Win64(x86_64)<br><br>需要用到的库：<br>- virtualenv<br>- pymysql<br></blockquote>
+
+<h2 id="坑1：python2还是python3？"><a href="#坑1：python2还是python3？" class="headerlink" title="坑1：python2还是python3？"></a>坑1：python2还是python3？</h2><p>当初我学Django的时候，由于网上比较多教程是使用python2.7，所以我很理所当然地选了python2.7，前期连接操作数据库的时候也没怎么遇到坑，可是时至今日，我倾向于python3，Django开始慢慢倾向python3，官方文档就是用python3.4，另一个重要原因是Django默认模型处理格式是Unicode编码，python3恰恰就是Unicode默认编码（python2是str），所以python3成为我安装的首选，当然，我安装的是Anaconda3，比较省心(<a href="https://mp.weixin.qq.com/s?__biz=MzAxMjUyNDQ5OA==&amp;mid=2653552610&amp;idx=1&amp;sn=67bdc5b525bff5584648e650c5eff9ed&amp;chksm=806dd15fb71a5849976f0a04c3ef1acbd504aef3c96f45ba7a04141d54bbe947c469df6a2a09&amp;mpshare=1&amp;scene=1&amp;srcid=03100GuL5bedzpwEx6hqP0Vw&amp;pass_ticket=DcyAWx6oYUzxF1kp0vYWCsdgNCw%2BODU8qN9vNaoT4TI7%2FZCIGAtwQT5XwVpsAktF#rd" target="_blank" rel="external">初探Anaconda——最省心的Python版本和第三方库管理</a>) 然后安装virtualenv，启动再装Django，最后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install mysql-python</div></pre></td></tr></table></figure></p>
+<p>前面挺顺利，到<strong>mysql-python</strong>这步我就蒙蔽了，安装失败,第一个坑！<br><img src="https://i.gyazo.com/c9a7b233bf20b51a5090ce75b956aaad.png" alt=""></p>
+<p>坑的原因在MySQL官网找到了，MySQL-python并不支持python3.6 = =！<br><img src="https://i.gyazo.com/b88473df9949e1cf2cc5a8616a1c4f88.png" alt=""></p>
+<p>开玩笑吗？Django叫我装python3，MySQL又不支持python3，这是要分家的节奏吗？所以我要装python2还是装python3？</p>
+<h3 id="填坑1：装python3"><a href="#填坑1：装python3" class="headerlink" title="填坑1：装python3"></a>填坑1：装python3</h3><p>站在后续发展大方向上，个人认为python3会逐渐显示出她的魅力。那么python3没有’MySQL-python’怎么连接数据库呢？答案就是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install pymyssql</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.gyazo.com/5ab98e33738ec87fe5ff4727a36c2db0.png" alt=""><br>在python3.6的库里边这有两个可以连接MySQL数据库，这里我们只安装第二个<strong>‘pymysql’</strong>。 </p>
+<p>安装完成后，配置settings.py，如果你直接执行manage.py的命令会出现<strong>Import MySQLdb Error</strong>导入MySQLdb错误，原因就是包路径没有’MySQLdb’这个库，只有’pymysql’，我们要告诉项目库换了。方法：<strong>在项目mysite/mysite/<strong>init</strong>.py 就是和settings.py同目录的<strong>init</strong>.py下添加下面代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import pymysql</div><div class="line">pymysql.install_as_MySQLdb()</div></pre></td></tr></table></figure></p>
+<p>到此问题就解决，如果在python shell连接数据库的话，依然可以按照python2那样进行操作，Import MySQLdb也不会出错。</p>
+<h2 id="坑2：MySQL编码问题：中文乱码"><a href="#坑2：MySQL编码问题：中文乱码" class="headerlink" title="坑2：MySQL编码问题：中文乱码"></a>坑2：MySQL编码问题：中文乱码</h2><p>编码问题，不管走到哪都会遇到，这是个大坑！如果你是用python2的话，在models.py开头就应该加上’-<em>- coding:utf8 -</em>- ‘ 强制使用utf8方式编码，如果是python3的就不需要，因为python2是默认gbk，python3默认utf8。并且在创建数据库是就应该设置编码方式为utf8</p>
+<p><blockquote><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt;create database mydb character set utf-8;</div></pre></td></tr></table></figure></blockquote></p>
+<p><br>这样的话可以从一开始就规避中文乱码这个坑。如果你觉得这样很麻烦，那就试试从MySQL本身入手，更改默认编码方式。 </p>
+<p>首先检查MySQL编码方式：<br><img src="https://i.gyazo.com/8bcc7787de83b2c106612a00eac1a2b9.png" alt=""><br>如果你的和我的编码方式都不全是utf8的话，恭喜了，你可以继续阅读，因为下面可能是你需要的</p>
+<h3 id="填坑2：更改MySQL默认编码为utf8"><a href="#填坑2：更改MySQL默认编码为utf8" class="headerlink" title="填坑2：更改MySQL默认编码为utf8"></a>填坑2：更改MySQL默认编码为utf8</h3><p>首先你要知道你家MySQL的配置文件<strong>my.ini</strong>在哪，<strong>一般就是在当初安装时选择安装的目录下</strong>，大对数情况’my.ini’并不叫’my.ini’，而是<strong>my-default.ini</strong>，但是没关系，找到这个文件，直接重命名就行，但一定要重命名为<strong>my.ini</strong>，否则配置无法生效！忘记安装位置的可以在环境变量PATH中找到。</p>
+<p>找到后用编辑软件打开， 在<strong>[client]、[mysql]下都加入一句default-character-set=utf8 ,在[mysqld]下加[character-set-server=utf8]</strong>。如果已经有的话就不用加，如果是gbk就改成utf8，就像这样：<br><img src="https://i.gyazo.com/f7387492654b0d2fbc1e9a1774027d58.png" alt=""></p>
+<p>改好配置后就需要重启服务使配置生效，在管理命令端(win+c,a)输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">net stop MySQL</div><div class="line">net start MySQL</div></pre></td></tr></table></figure></p>
+<p>MySQL是服务名称，也可以进入管理服务窗口，手动重启服务器。</p>
+<p>完成后，就可以正常显示中文并且以后创建新的数据库除非指定，否则默认utf8。<br><img src="https://i.gyazo.com/1bcd2d8e505c9593f466edace3ae9788.png" alt=""></p>
+<p>可是即便如此我还是有点不放心，那就试试直接修改数据库编码吧。举个例子，我Django使用的数据库名为’mydb’，那就进入数据库储存目录<strong>‘etc\MySQL\MySQL Server 5.7\Data\mydb’</strong> 找到<strong>db.opt</strong>文件，然后修改为utf8，就像这样：<br><img src="https://i.gyazo.com/6a3eed30675690838e5a606069b24032.png" alt=""><br>如此就能保证编码方式一定是utf8。</p>
+<p>还有另外一种方式，可修改MySQL编码，就是使用<strong>set character_set_xx=utf8</strong><br><img src="https://i.gyazo.com/81668c40f23257f13f0e7e192f19d2c1.png" alt=""><br>直到全部都是utf8，就像这样：<br><img src="https://i.gyazo.com/d83c0549c821609de07a743d7704de38.png" alt=""><br>但是这种方式只对当前有效，也就是说退出重开后就会打回原形，并不能根本上解决问题。 </p>
+<p>到这里MySQL编码就告一段落了！</p>
+<h2 id="花絮1：Anaconda不是能同时用python2和3吗，为什么还纠结？"><a href="#花絮1：Anaconda不是能同时用python2和3吗，为什么还纠结？" class="headerlink" title="花絮1：Anaconda不是能同时用python2和3吗，为什么还纠结？"></a>花絮1：Anaconda不是能同时用python2和3吗，为什么还纠结？</h2><p>当时我遇到<strong>坑1</strong>的时候就想到既然anaconda能装两个版本的python，为什么不用python2操作数据库，用python3写models呢？于是乎我就利用<strong>conda</strong>命令创建了python2的环境，然后激活，二话不说就准备启动virtalenv直接刚，结果就尴尬了。事实上anaconda创建python2环境是一种虚拟环境，原理和virtualenv一模一样，甚至虚拟环境名也是用<strong>env</strong>，所以在虚拟环境里再搞个虚拟环境，这能好吗？我也挺服了我自己 = =！</p>
+<h2 id="花絮2：同时安装Anaconda2和Anaconda3会怎样？"><a href="#花絮2：同时安装Anaconda2和Anaconda3会怎样？" class="headerlink" title="花絮2：同时安装Anaconda2和Anaconda3会怎样？"></a>花絮2：同时安装Anaconda2和Anaconda3会怎样？</h2><p>对！这种事我在填坑1也做过，两个版本的Anaconda都能成功安装，但是后来安装的版本在cmd使用python是无效的，换句话说，默认的python版本只能有一个并且是最先安装的那个，我尝试过修改环境变量PATH的位置顺序，然而并不能改变什么，所以后来我直接卸载了Anaconda2，留下了Anaconda3。</p>
+<h2 id="花絮3：conda和pip安装有什么不同？"><a href="#花絮3：conda和pip安装有什么不同？" class="headerlink" title="花絮3：conda和pip安装有什么不同？"></a>花絮3：conda和pip安装有什么不同？</h2><p>两个工具都能安装现有的库，只是资源地址不一样，并且cond需要修改镜像源为国内清华大学的镜像源才能下载。除了这点外，还有<strong>启动虚拟环境env后安装库的位置也有不同</strong>，在env内使用pip install 的库会直接安装到虚拟环境env内，这样在env的python端Import导入这个库就能成功，相反，用conda install安装的库会放到anaconda的根目录site-packages下，在虚拟环境env并不会安装这个库，所以想在env顺利Import这个库的话还要从site-packages复制过来。</p>
+<h2 id="花絮4：我找到不只一个my-default-ini，到底哪个才是？"><a href="#花絮4：我找到不只一个my-default-ini，到底哪个才是？" class="headerlink" title="花絮4：我找到不只一个my-default.ini，到底哪个才是？"></a>花絮4：我找到不只一个my-default.ini，到底哪个才是？</h2><p>在填<strong>坑2</strong>的时候，找这个配置文件的时候花了我挺多时间，因为我的电脑安装后名为<strong>MySQL</strong>的文件就有三个，分别在安装目录D盘、C盘的’Pragramin Files’和’ProgramData’，而且里面的文件都差不多一个样，然而重点是的配置文件’my.ini’只有在’ProgramData’有，其他两个却叫’my-default.ini’,并且这’my.ini’里面包含其他两个没有的很多参数，更加重要的是在MySQL服务管理的属性栏可以看到，配置文件就是’ProgramData’文件的这个’my.ini’，所以我一度坚定地毫不怀疑地认为它就是我要的那个’my.ini’。<br><img src="https://i.gyazo.com/a2930430ccee4bc7034f80fb5f020721.png" alt=""><br>于是我就开始改，改完了重启服务，查看默认编码，不行，再改，再重启，还是不行，然后上网各种查，甚至一度删服务重新install，坑爹的还是显示gbk编码，中文依然乱码，后来准备放弃时，跑去<strong>改原本不看好的安装目录那个’my-default.ini’并且重命名后</strong>，重启服务，查看编码，结果真是柳暗花明又一村！成功了！唉~可能这就是命吧。。。</p>
+<p>人生苦短，我用Python~</p>
+<hr>
+
+<h2 id="声明："><a href="#声明：" class="headerlink" title="声明："></a>声明：</h2><p><strong>欢迎转载，转载时请注明出处</strong><br><strong><a href="https://JacobYRJ.github.io" target="_blank" rel="external">JacobYRJ</a></strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/12/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/03/Ubuntu下Nginx+gunicorn部署Django/" rel="prev" title="Ubuntu下Nginx+gunicorn部署Django">
+                Ubuntu下Nginx+gunicorn部署Django <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="JacobYRJ" />
+          <p class="site-author-name" itemprop="name">JacobYRJ</p>
+           
+              <p class="site-description motion-element" itemprop="description">Fighting!Fighting!Fighting</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导言"><span class="nav-number">1.</span> <span class="nav-text">导言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑1：python2还是python3？"><span class="nav-number">2.</span> <span class="nav-text">坑1：python2还是python3？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#填坑1：装python3"><span class="nav-number">2.1.</span> <span class="nav-text">填坑1：装python3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑2：MySQL编码问题：中文乱码"><span class="nav-number">3.</span> <span class="nav-text">坑2：MySQL编码问题：中文乱码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#填坑2：更改MySQL默认编码为utf8"><span class="nav-number">3.1.</span> <span class="nav-text">填坑2：更改MySQL默认编码为utf8</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#花絮1：Anaconda不是能同时用python2和3吗，为什么还纠结？"><span class="nav-number">4.</span> <span class="nav-text">花絮1：Anaconda不是能同时用python2和3吗，为什么还纠结？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#花絮2：同时安装Anaconda2和Anaconda3会怎样？"><span class="nav-number">5.</span> <span class="nav-text">花絮2：同时安装Anaconda2和Anaconda3会怎样？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#花絮3：conda和pip安装有什么不同？"><span class="nav-number">6.</span> <span class="nav-text">花絮3：conda和pip安装有什么不同？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#花絮4：我找到不只一个my-default-ini，到底哪个才是？"><span class="nav-number">7.</span> <span class="nav-text">花絮4：我找到不只一个my-default.ini，到底哪个才是？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明："><span class="nav-number">8.</span> <span class="nav-text">声明：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JacobYRJ</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jacobyrj';
+      var disqus_identifier = '2017/03/14/那些年在win下填过的Django坑/';
+
+      var disqus_title = "那些年在win下填过的Django坑";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+	
+		 <script type="text/javascript"> 
+		(function(){ 
+		var appid = 'cysYLLjQg'; 
+		var conf = '7e9de3f34bb4f7e6ef9a8d077b7406fd'; 
+		var width = window.innerWidth || document.documentElement.clientWidth; 
+		if (width < 960) { 
+		window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+		<script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+	
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("n9eXnIy0IFoUCLrw6D0SgPa2-gzGzoHsz", "SQWCDRNfKamzvkE0z5WSqqkr");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

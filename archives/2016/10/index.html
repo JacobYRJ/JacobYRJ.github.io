@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -27,9 +27,12 @@
 
 
 
+
+
+
   
   
-  <link href="/VEN/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -63,9 +66,9 @@
 
 
 
-<link href="/VEN/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -77,51 +80,65 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
 
 
 
-<meta name="description" content="fighting!fighting!fighting!">
+<meta name="description" content="Fighting!Fighting!Fighting">
 <meta property="og:type" content="website">
 <meta property="og:title" content="BREF">
 <meta property="og:url" content="http://yoursite.com/archives/2016/10/index.html">
 <meta property="og:site_name" content="BREF">
-<meta property="og:description" content="fighting!fighting!fighting!">
+<meta property="og:description" content="Fighting!Fighting!Fighting">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BREF">
-<meta name="twitter:description" content="fighting!fighting!fighting!">
+<meta name="twitter:description" content="Fighting!Fighting!Fighting">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
       userId: '0',
       author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://yoursite.com/archives/2016/10/"/>
+
+
+
 
 
   <title> Archive | BREF </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
+
+
+
+
 
 
 
@@ -140,26 +157,30 @@
   <div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">BREF</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BREF</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">人生苦短</p>
+      
   </div>
-  <p class="site-subtitle">人生苦短</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -198,26 +219,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-comments">
-          <a href="/comments" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
-            
-            comments
-          </a>
-        </li>
-      
 
       
     </ul>
@@ -225,6 +226,8 @@
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -244,7 +247,7 @@
       
         
       
-      Um..! 10 posts in total. Keep on posting.
+      Um..! 8 posts in total. Keep on posting.
     </span>
 
     
@@ -263,86 +266,12 @@
 
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/Django-Web框架摘要-二/2016/10/29/" itemprop="url">
-              
-                <span itemprop="name">Django Web框架摘要(二)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-29T20:41:53+08:00"
-              content="2016-10-29" >
-          10-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/Django-Web框架摘要(一)/2016/10/29/" itemprop="url">
-              
-                <span itemprop="name">Django Web框架摘要(一)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-29T14:16:52+08:00"
-              content="2016-10-29" >
-          10-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/Python基础例子小结/2016/10/20/" itemprop="url">
+            <a class="post-title-link" href="/2016/10/20/Python例子小结/" itemprop="url">
               
                 <span itemprop="name">Python例子小结</span>
               
@@ -352,7 +281,7 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-20T17:11:37+08:00"
+              datetime="2016-10-20T00:00:00+08:00"
               content="2016-10-20" >
           10-20
         </time>
@@ -374,12 +303,12 @@
 
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/Github-Pages-Problem/2016/10/19/" itemprop="url">
+            <a class="post-title-link" href="/2016/10/19/Github-Pages有时无法访问问题解决/" itemprop="url">
               
                 <span itemprop="name">Github Pages有时无法访问问题解决</span>
               
@@ -389,7 +318,7 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-19T17:42:04+08:00"
+              datetime="2016-10-19T00:00:00+08:00"
               content="2016-10-19" >
           10-19
         </time>
@@ -411,14 +340,14 @@
 
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/hexo写Blog/2016/10/18/" itemprop="url">
+            <a class="post-title-link" href="/2016/10/18/Hexo搭建Blog/" itemprop="url">
               
-                <span itemprop="name">hexo搭建Blog</span>
+                <span itemprop="name">Hexo搭建Blog</span>
               
             </a>
         
@@ -426,7 +355,7 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-18T10:45:00+08:00"
+              datetime="2016-10-18T00:00:00+08:00"
               content="2016-10-18" >
           10-18
         </time>
@@ -448,12 +377,12 @@
 
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/水仙花数/2016/10/11/" itemprop="url">
+            <a class="post-title-link" href="/2016/10/11/水仙花数/" itemprop="url">
               
                 <span itemprop="name">水仙花数</span>
               
@@ -463,7 +392,7 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-11T13:49:49+08:00"
+              datetime="2016-10-11T00:00:00+08:00"
               content="2016-10-11" >
           10-11
         </time>
@@ -485,14 +414,14 @@
 
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/Jeklly/2016/10/08/" itemprop="url">
+            <a class="post-title-link" href="/2016/10/08/用Jekll写Blog/" itemprop="url">
               
-                <span itemprop="name">用Jeklly写Blog</span>
+                <span itemprop="name">用Jekll写Blog</span>
               
             </a>
         
@@ -500,44 +429,7 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-08T18:39:57+08:00"
-              content="2016-10-08" >
-          10-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/hello-world/2016/10/08/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-08T16:33:29+08:00"
+              datetime="2016-10-08T00:00:00+08:00"
               content="2016-10-08" >
           10-08
         </time>
@@ -555,7 +447,7 @@
   
 
 
-
+          
           </div>
           
 
@@ -581,31 +473,29 @@
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
                alt="JacobYRJ" />
           <p class="site-author-name" itemprop="name">JacobYRJ</p>
-          <p class="site-description motion-element" itemprop="description">fighting!fighting!fighting!</p>
+           
+              <p class="site-description motion-element" itemprop="description">Fighting!Fighting!Fighting</p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">10</span>
-              <span class="site-state-item-name">posts</span>
-            </a>
-          </div>
 
           
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">tags</span>
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
+          
+
+          
+
           
 
         </nav>
@@ -614,17 +504,6 @@
 
         <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/JacobYRJ" target="_blank" title="github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  github
-                </a>
-              </span>
-            
-          
         </div>
 
         
@@ -633,7 +512,12 @@
         
         
 
+        
+
+
       </section>
+
+      
 
       
 
@@ -657,6 +541,7 @@
   <span class="author" itemprop="copyrightHolder">JacobYRJ</span>
 </div>
 
+
 <div class="powered-by">
   Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
@@ -668,15 +553,20 @@
   </a>
 </div>
 
+
         
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
   </div>
 
   
@@ -699,31 +589,32 @@
 
 
 
-  
-  <script type="text/javascript" src="/VEN/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/VEN/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/VEN/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/VEN/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/VEN/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/VEN/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
@@ -741,38 +632,58 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
 
 
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"JacobYRJ"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
   
-    
-    <script src="/VEN/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jacobyrj';
+      var disqus_identifier = 'archives/2016/10/index.html';
+
+      var disqus_title = "";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+
+    </script>
   
 
 
 
 
+
+
+
+
+
+
+
+	
+		 <script type="text/javascript"> 
+		(function(){ 
+		var appid = 'cysYLLjQg'; 
+		var conf = '7e9de3f34bb4f7e6ef9a8d077b7406fd'; 
+		var width = window.innerWidth || document.documentElement.clientWidth; 
+		if (width < 960) { 
+		window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+		<script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+	
 
 
   
@@ -887,6 +798,11 @@
     });
   </script>
 
+
+
+  
+
+  
 
 
   

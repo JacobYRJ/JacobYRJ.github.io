@@ -1,0 +1,877 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="做后台开发，不光需要python的基础知识和Django框架的熟悉，还应该需要知道具体怎么部署一个服务器，包括服务器的性能，处理并发的能力，否则一个项目就算做出来也只能自我安慰。
+尽管网上关于这类部署的教程有很多，但是不太详细，所以作为同样是新手的我先踩踩坑，为各位大佬垫垫底。
+一、基础知识nginxNgnix是一个轻量级高性能的HTTP和反向代理服务器，工作在HTTP层，具有强大的稳定、丰富的功">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu下Nginx+gunicorn部署Django">
+<meta property="og:url" content="http://yoursite.com/2017/05/03/Ubuntu下Nginx+gunicorn部署Django/index.html">
+<meta property="og:site_name" content="BREF">
+<meta property="og:description" content="做后台开发，不光需要python的基础知识和Django框架的熟悉，还应该需要知道具体怎么部署一个服务器，包括服务器的性能，处理并发的能力，否则一个项目就算做出来也只能自我安慰。
+尽管网上关于这类部署的教程有很多，但是不太详细，所以作为同样是新手的我先踩踩坑，为各位大佬垫垫底。
+一、基础知识nginxNgnix是一个轻量级高性能的HTTP和反向代理服务器，工作在HTTP层，具有强大的稳定、丰富的功">
+<meta property="og:image" content="https://static.oschina.net/uploads/img/201703/12145841_UgME.jpg">
+<meta property="og:updated_time" content="2017-05-03T13:07:36.620Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu下Nginx+gunicorn部署Django">
+<meta name="twitter:description" content="做后台开发，不光需要python的基础知识和Django框架的熟悉，还应该需要知道具体怎么部署一个服务器，包括服务器的性能，处理并发的能力，否则一个项目就算做出来也只能自我安慰。
+尽管网上关于这类部署的教程有很多，但是不太详细，所以作为同样是新手的我先踩踩坑，为各位大佬垫垫底。
+一、基础知识nginxNgnix是一个轻量级高性能的HTTP和反向代理服务器，工作在HTTP层，具有强大的稳定、丰富的功">
+<meta name="twitter:image" content="https://static.oschina.net/uploads/img/201703/12145841_UgME.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/03/Ubuntu下Nginx+gunicorn部署Django/"/>
+
+
+
+
+
+  <title> Ubuntu下Nginx+gunicorn部署Django | BREF </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BREF</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">人生苦短</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/Ubuntu下Nginx+gunicorn部署Django/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JacobYRJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BREF">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Ubuntu下Nginx+gunicorn部署Django
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-03T00:00:00+08:00">
+                2017-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/03/Ubuntu下Nginx+gunicorn部署Django/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/03/Ubuntu下Nginx+gunicorn部署Django/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/05/03/Ubuntu下Nginx+gunicorn部署Django/" class="leancloud_visitors" data-flag-title="Ubuntu下Nginx+gunicorn部署Django">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>做后台开发，不光需要python的基础知识和Django框架的熟悉，还应该需要知道具体怎么部署一个服务器，包括服务器的性能，处理并发的能力，否则一个项目就算做出来也只能自我安慰。</p>
+<p>尽管网上关于这类部署的教程有很多，但是不太详细，所以作为同样是新手的我先踩踩坑，为各位大佬垫垫底。</p>
+<h2 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a>一、基础知识</h2><h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>Ngnix是一个轻量级高性能的HTTP和反向代理服务器，工作在HTTP层，具有强大的稳定、丰富的功能集、实例配置文件和低系统资源消耗。当然Apache也是个很好的选择，但我选择了Nginx，因为国内越来越多的服务器网站开始转向Nginx，从某种程度上说明Nginx可能比Apache更高性能和稳定</p>
+<h3 id="Gunicornn"><a href="#Gunicornn" class="headerlink" title="Gunicornn"></a>Gunicornn</h3><p>Gunicorn 绿色独角兽是一个Python WSGI UNIX的HTTP服务器，这是一个pre-fork-worker的模型，从Ruby的独角兽(Unicorn)项目一职。改Gunicornfuwuqi大致与各种Web款回家兼容，只需非常简单的执行，轻量级的资源消耗，以及相当迅速。<br><img src="https://static.oschina.net/uploads/img/201703/12145841_UgME.jpg" alt="图片源自：http://www.oschina.net/p/gunicorn/"><br>当然，Uwsgi也是一个很好的选择，但从配置过程来看，gunicorn会比uwsgi来得简单，并且gunicorn能更好地嵌套Django。</p>
+<h3 id="Supervisor"><a href="#Supervisor" class="headerlink" title="Supervisor"></a>Supervisor</h3><p>Supervisor是一个用python写的进程管理工具，可以很方便的用来启动、重启关闭进程（不仅仅是Python进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程。但是这个工具只支持Python2，不支持Python3，这点在安装是就体现出来。如果你使用的是Python3，也可以安装其他类似的工具，如<a href="https://mmonit.com/monit/" target="_blank" rel="external">monit</a></p>
+<h3 id="nginx与gunicorn作用"><a href="#nginx与gunicorn作用" class="headerlink" title="nginx与gunicorn作用"></a>nginx与gunicorn作用</h3><p>nginx作为反向代理，工作在HTTP层，缓冲请求和响应，然后转发给指定的服务器或进程，这里是转发给gunicorn，，gunicorn将收到的请求分配到指定的具体空闲进程。nginx更强大的功能是直接处理静态文件，提供额外的访问控制，限速，限连接数等等。整个过程实现负载均衡，以及并发处理。 </p>
+<h2 id="二、部署方法："><a href="#二、部署方法：" class="headerlink" title="二、部署方法："></a>二、部署方法：</h2><p>这里，我假设各位已经对Django有一定的了解，并且创建过一个project，所以我就直接从创建好Django项目开始！</p>
+<blockquote><br>我所部署的服务器： 腾讯云 1核 1GB内存 20GB(云硬盘) Ubuntu 16.04.1 LTS 64位<br><br></blockquote>
+
+<h3 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h3><p>安装之前，如果你是工作在virtualenv环境下的话，记得先进入到virtualenv环境！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ source /path/to/env/bin/activate</div></pre></td></tr></table></figure></p>
+<p>如果没有使用virtualenv的话就没必要进入了。 </p>
+<p>安装gunicorn：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install gunicorn</div></pre></td></tr></table></figure>
+<p>安装supervisor：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install supervisor</div></pre></td></tr></table></figure>
+<p>安装nginx：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt install nginx</div></pre></td></tr></table></figure>
+<h3 id="2、配置Django"><a href="#2、配置Django" class="headerlink" title="2、配置Django"></a>2、配置Django</h3><p>首先确保Django项目能正常访问！ </p>
+<p>然后我们来配置Django的<strong>settings.py</strong>文件，添加<strong>ALLOW_HOSTS</strong>使项目能从外网访问。一般申请云服务器都会有两个主IP地址，公网和内网IP，我们只需要添加公网IP就足够了：</p>
+<p>settings.py :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ALLOWED_HOSTS = [&apos;公网IP&apos;]</div></pre></td></tr></table></figure></p>
+<p>为了方便nginx可以直接处理静态文件，我们可以预先将项目的静态文件放在一起,在项目目录下创建<strong>collectedstatic</strong>文件夹：</p>
+<p>添加settings.py：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import os</div><div class="line">BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))</div><div class="line"></div><div class="line">STATIC_ROOT = os.path.join(BASE_DIR, &apos;collectedstatic&apos;)</div></pre></td></tr></table></figure></p>
+<p>这里的BASE_DIR一般Django会自带有。</p>
+<p>然后运行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ python manage.py collectstatic</div></pre></td></tr></table></figure></p>
+<h3 id="3、配置gunicorn和supervisor"><a href="#3、配置gunicorn和supervisor" class="headerlink" title="3、配置gunicorn和supervisor"></a>3、配置gunicorn和supervisor</h3><p>对于gunicorn需要了解用法即可：<br>进入virtualenv，输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gunicorn -w3 -b0.0.0.0:8080 /path/to/project/project.wsgi</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>-w3</strong>: 表示启用3个进程，官方说法 进程数 = 2*CPU个数 + 1</li>
+<li><strong>-b0.0.0.0:8080</strong>: 表示绑定全网IP(即0.0.0.0)，占用8080端口，这里端口号可以改其他，但请记得是那个。</li>
+</ul>
+<p>如果运行失败，可能是限权不够，提升限权即可，更有可能是8080端口被占用，你可以用一下命令查看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ netstat -anpl | grep 8080</div></pre></td></tr></table></figure></p>
+<p>确实被占用的话要么kill了那个进程，要么选择其他端口。</p>
+<p><strong>配置supervisor</strong>：</p>
+<p>首先生成supervisor默认配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ (sudo) echo_supervisord_conf &gt; /path/to/supervisord.conf</div></pre></td></tr></table></figure></p>
+<p>/path/to/supervisord.conf 是存放配置文件的路径</p>
+<p>然后打开supervisord.conf, 在最底部添加(每一行前面不要有空格，防止报错)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[program:projectname]</div><div class="line">command=/path/to/gunicorn -w3 -b0.0.0.0:8080 /path/to/project/project.wsgi</div><div class="line">directory=/path/to/project</div><div class="line">user=username</div><div class="line">autostart=true</div><div class="line">autorestart=true</div></pre></td></tr></table></figure></p>
+<ul>
+<li>projectname：项目名，也可以其他名字，用于supervisor启动；</li>
+<li>command：命令行，和gunicorn的命令一样</li>
+<li>user: 能够使用的用户，即你当前登陆服务器的用户，也可以是root</li>
+</ul>
+<p>配置好后，就可以运行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ supervisord -c /path/to/supervisord.conf</div></pre></td></tr></table></figure></p>
+<p>初次使用最好运行上面这条命令，相当于告知配置文件，然后就可以用下面命令方便启动、停止、重启：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ supervisorctl start|stop|restart projectname</div></pre></td></tr></table></figure></p>
+<p>启动后可以尝试从外网进行访问！</p>
+<h3 id="4、配置nginx"><a href="#4、配置nginx" class="headerlink" title="4、配置nginx"></a>4、配置nginx</h3><p>创建配置文件<strong>project.conf</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd /etc/nginx/sites-available</div><div class="line">$ touch project.conf</div></pre></td></tr></table></figure></p>
+<p>一般默认放在 /etc/nginx/sites-available 中<br>配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">	listen 80;</div><div class="line">	server_name 公网IP;</div><div class="line">	root /path/to/project;</div><div class="line">	</div><div class="line">	error_log /path/to/nginx_log.log debug;</div><div class="line">		</div><div class="line">	location /static &#123;</div><div class="line">		alias /path/to/project/collectedstatic;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	location / &#123;</div><div class="line">		proxy_pass http://0.0.0.0:8080;</div><div class="line">		include /etc/nginx/proxy_params;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>listen 80: 表示nginx监听80端口；</li>
+<li>error_log：表示debug日志，可以自己选择路径；</li>
+<li>proxy_pass : 表示提供服务的进程/服务器，<a href="http://0.0.0.0:8080就是gunicorn绑定的端口。" target="_blank" rel="external">http://0.0.0.0:8080就是gunicorn绑定的端口。</a></li>
+</ul>
+<p>配置完成后，激活配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ln -s /etc/nginx/sites-available/project.conf /etc/nginx/sites-enabled/project.conf</div></pre></td></tr></table></figure></p>
+<p>然后检查配置语法问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nginx -t</div></pre></td></tr></table></figure></p>
+<p>启动、重启、停止nginx服务器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo service start|restart|stop</div></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nginx -s reload|stop</div></pre></td></tr></table></figure></p>
+<p>这里有个小bug，nginx停止后再启动比较容易出现错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx: [error] open() &quot;/run/nginx.pid&quot; failed (2: No such file or directort</div></pre></td></tr></table></figure></p>
+<p>这个错误是因为nginx不正常关闭导致/run/nginx.pid文件丢失，解决方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -c /etc/nginx/nginx.conf</div></pre></td></tr></table></figure></p>
+<p>到此，整个简单服务器就算部署就好了！</p>
+<p>最后附送几个可能会用到的ubuntu命令：</p>
+<p>查看gunicorn占用端口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep gunicorn</div></pre></td></tr></table></figure></p>
+<p>查看运行时间，健康状态和平均负载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">w</div></pre></td></tr></table></figure></p>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uptime</div></pre></td></tr></table></figure></p>
+<p>vim编辑下只读，无法保存？vim下运行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:w !sudo tee %</div></pre></td></tr></table></figure></p>
+<hr>
+
+<h2 id="声明："><a href="#声明：" class="headerlink" title="声明："></a>声明：</h2><p><strong>欢迎转载，转载时请注明出处</strong><br><strong><a href="https://JacobYRJ.github.io" target="_blank" rel="external">JacobYRJ</a></strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/14/那些年在win下填过的Django坑/" rel="next" title="那些年在win下填过的Django坑">
+                <i class="fa fa-chevron-left"></i> 那些年在win下填过的Django坑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="JacobYRJ" />
+          <p class="site-author-name" itemprop="name">JacobYRJ</p>
+           
+              <p class="site-description motion-element" itemprop="description">Fighting!Fighting!Fighting</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、基础知识"><span class="nav-number">1.</span> <span class="nav-text">一、基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx"><span class="nav-number">1.1.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gunicornn"><span class="nav-number">1.2.</span> <span class="nav-text">Gunicornn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Supervisor"><span class="nav-number">1.3.</span> <span class="nav-text">Supervisor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx与gunicorn作用"><span class="nav-number">1.4.</span> <span class="nav-text">nginx与gunicorn作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、部署方法："><span class="nav-number">2.</span> <span class="nav-text">二、部署方法：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、安装"><span class="nav-number">2.1.</span> <span class="nav-text">1、安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、配置Django"><span class="nav-number">2.2.</span> <span class="nav-text">2、配置Django</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、配置gunicorn和supervisor"><span class="nav-number">2.3.</span> <span class="nav-text">3、配置gunicorn和supervisor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、配置nginx"><span class="nav-number">2.4.</span> <span class="nav-text">4、配置nginx</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明："><span class="nav-number">3.</span> <span class="nav-text">声明：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JacobYRJ</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jacobyrj';
+      var disqus_identifier = '2017/05/03/Ubuntu下Nginx+gunicorn部署Django/';
+
+      var disqus_title = "Ubuntu下Nginx+gunicorn部署Django";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+	
+		 <script type="text/javascript"> 
+		(function(){ 
+		var appid = 'cysYLLjQg'; 
+		var conf = '7e9de3f34bb4f7e6ef9a8d077b7406fd'; 
+		var width = window.innerWidth || document.documentElement.clientWidth; 
+		if (width < 960) { 
+		window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+		<script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+	
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("n9eXnIy0IFoUCLrw6D0SgPa2-gzGzoHsz", "SQWCDRNfKamzvkE0z5WSqqkr");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

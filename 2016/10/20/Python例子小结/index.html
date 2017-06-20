@@ -1,0 +1,873 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Control StructuresBoolean Logic1231 == 1 and 2 == 2  1 == 2 or 2 == 2   not 1 &amp;gt; 7
+123True  True  False
+Operator Precedence
+List12345number = 3things = [&quot;string&quot;, 0, [1, 2, number], 4.56]print(thing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python例子小结">
+<meta property="og:url" content="http://yoursite.com/2016/10/20/Python例子小结/index.html">
+<meta property="og:site_name" content="BREF">
+<meta property="og:description" content="Control StructuresBoolean Logic1231 == 1 and 2 == 2  1 == 2 or 2 == 2   not 1 &amp;gt; 7
+123True  True  False
+Operator Precedence
+List12345number = 3things = [&quot;string&quot;, 0, [1, 2, number], 4.56]print(thing">
+<meta property="og:image" content="https://i.gyazo.com/d328323670dcbf712726afd323925a3b.png">
+<meta property="og:updated_time" content="2017-04-30T10:14:26.905Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python例子小结">
+<meta name="twitter:description" content="Control StructuresBoolean Logic1231 == 1 and 2 == 2  1 == 2 or 2 == 2   not 1 &amp;gt; 7
+123True  True  False
+Operator Precedence
+List12345number = 3things = [&quot;string&quot;, 0, [1, 2, number], 4.56]print(thing">
+<meta name="twitter:image" content="https://i.gyazo.com/d328323670dcbf712726afd323925a3b.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/20/Python例子小结/"/>
+
+
+
+
+
+  <title> Python例子小结 | BREF </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BREF</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">人生苦短</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/20/Python例子小结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JacobYRJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BREF">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python例子小结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-20T00:00:00+08:00">
+                2016-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/20/Python例子小结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/20/Python例子小结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/10/20/Python例子小结/" class="leancloud_visitors" data-flag-title="Python例子小结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Control-Structures"><a href="#Control-Structures" class="headerlink" title="Control Structures"></a>Control Structures</h2><h3 id="Boolean-Logic"><a href="#Boolean-Logic" class="headerlink" title="Boolean Logic"></a>Boolean Logic</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span> == <span class="number">1</span> <span class="keyword">and</span> <span class="number">2</span> == <span class="number">2</span>  </div><div class="line"><span class="number">1</span> == <span class="number">2</span> <span class="keyword">or</span> <span class="number">2</span> == <span class="number">2</span>   </div><div class="line"><span class="keyword">not</span> <span class="number">1</span> &gt; <span class="number">7</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">True</span>  </div><div class="line"><span class="keyword">True</span>  </div><div class="line"><span class="keyword">False</span></div></pre></td></tr></table></figure>
+<h3 id="Operator-Precedence"><a href="#Operator-Precedence" class="headerlink" title="Operator Precedence"></a>Operator Precedence</h3><p><img src="https://i.gyazo.com/d328323670dcbf712726afd323925a3b.png" alt=""></p>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">number = <span class="number">3</span></div><div class="line">things = [<span class="string">"string"</span>, <span class="number">0</span>, [<span class="number">1</span>, <span class="number">2</span>, number], <span class="number">4.56</span>]</div><div class="line">print(things[<span class="number">1</span>])</div><div class="line">print(things[<span class="number">2</span>])</div><div class="line">print(things[<span class="number">2</span>][<span class="number">3</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span>  </div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="number">3</span></div></pre></td></tr></table></figure>
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><p>函数可以直接调用！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x,y)</span>:</span></div><div class="line">    <span class="keyword">return</span> x+y <span class="comment"># return can't use out of functions</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_twice</span><span class="params">(func, x, y)</span>:</span></div><div class="line">    <span class="keyword">return</span> func(func(x,y), func(x,y))</div><div class="line"><span class="comment"># functions can use as arguments</span></div><div class="line">a = <span class="number">5</span></div><div class="line">b = <span class="number">10</span></div><div class="line">print(do_twice(add, a, b))</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">30</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h2 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h2><p><strong>ImportError</strong> : an import fails;<br><strong>IndexError</strong> : a list is indexed with an out-of-range number;<br><strong>NameError</strong> : an unknown variable is used;<br><strong>SyntaxError</strong> : the code can’t be parsed propertly;<br><strong>TypeError</strong> : a function is called on a value of an inappropriate value.</p>
+<h3 id="Exception-Handing"><a href="#Exception-Handing" class="headerlink" title="Exception Handing"></a>Exception Handing</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>:</div><div class="line">    world = <span class="string">'spam'</span></div><div class="line">    print(world/<span class="number">0</span>)</div><div class="line"><span class="keyword">except</span>:</div><div class="line">    print(<span class="string">'An error ocurred'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">An error ocurred</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="OR"><a href="#OR" class="headerlink" title="OR"></a>OR</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">print(<span class="number">1</span>)</div><div class="line"><span class="keyword">assert</span> <span class="number">2</span>+<span class="number">2</span> == <span class="number">4</span>  <span class="comment"># a sanity-check,turn on or turn off </span></div><div class="line">print(<span class="number">2</span>)</div><div class="line"><span class="keyword">assert</span> <span class="number">1</span>+<span class="number">1</span> == <span class="number">3</span></div><div class="line">print(<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">1</div><div class="line">2</div><div class="line">AssertError</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">temp = <span class="number">-10</span></div><div class="line"><span class="keyword">assert</span>(temp &gt;=<span class="number">10</span>), <span class="string">"Colder than absolute zero!"</span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;</div><div class="line">AssertError: Colder than absolute zero!&quot;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h2 id="Functional-Programming"><a href="#Functional-Programming" class="headerlink" title="Functional Programming"></a>Functional Programming</h2><h3 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h3><p>lambad 三种用法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#named funciton</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">polynomial</span><span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">return</span> x**<span class="number">2</span> + <span class="number">5</span>*x + <span class="number">4</span></div><div class="line">print(polynomial(<span class="number">-4</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#lambda</div><div class="line">print((lambad x: x**2 + 5*x + 4) (-4))</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">double = <span class="keyword">lambda</span> x: x**<span class="number">2</span> + <span class="number">5</span>*x + <span class="number">4</span></div><div class="line">print(double(<span class="number">-4</span>))</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; 0</div></pre></td></tr></table></figure>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>The function map takes a function and an iterable as arguments, and returns a new iterable with the function applied to each argument.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_five</span><span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">return</span> x + <span class="number">5</span></div><div class="line">nums = [<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>, <span class="number">44</span>, <span class="number">55</span>]</div><div class="line">result = list(map(add_five, nums))</div><div class="line">print(result)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; [16, 27, 38, 49, 60]</div></pre></td></tr></table></figure>
+<h3 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h3><p>The function filter filters an iterable by removig iterms that don’t match a predicate</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nums = [<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>, <span class="number">44</span>, <span class="number">55</span>]</div><div class="line">res = lis(filter(<span class="keyword">lambda</span> x: x%<span class="number">2</span>==<span class="number">0</span>, nums))</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; [22, 44]]</div></pre></td></tr></table></figure>
+<h3 id="generators-yield"><a href="#generators-yield" class="headerlink" title="generators(yield)"></a>generators(yield)</h3><p>Generators ate a type of iterable, like lists or tuples.</p>
+<p>They can be created using functions and the yield statement.</p>
+<p>Using generatoers results in improved performance, which is the result of the lazy (on demand) generation of values, which translates to lower memory usage.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">countdown</span><span class="params">()</span>:</span></div><div class="line">    i = <span class="number">5</span></div><div class="line">    <span class="keyword">while</span> i &gt; <span class="number">0</span>:</div><div class="line">        <span class="keyword">yield</span> i</div><div class="line">        i -= <span class="number">1</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> countdown():</div><div class="line">    print(i)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; </div><div class="line">5</div><div class="line">4</div><div class="line">3</div><div class="line">2</div><div class="line">1</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">numbers</span><span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(x) :</div><div class="line">        <span class="keyword">if</span> i % <span class="number">2</span> ==<span class="number">0</span>:</div><div class="line">            <span class="keyword">yield</span> i</div><div class="line">print(list(numbers(<span class="number">11</span>)))</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; [0,2,4,6,8,10]</div></pre></td></tr></table></figure>
+<h3 id="Decorators"><a href="#Decorators" class="headerlink" title="Decorators( @ )"></a>Decorators( @ )</h3><p>装饰函数个人理解，相当于定义一个嵌套函数，作为主函数，@后面加拓展函数，调用只需拓展函数名即可。</p>
+<p>Thisideal when you need to extend the functionality of functionality of functions that you don’t want to modify.</p>
+<p>原理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decor</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap</span><span class="params">()</span>:</span></div><div class="line">        print(<span class="string">'======='</span>)</div><div class="line">        func()</div><div class="line">        print(<span class="string">'======='</span>)</div><div class="line">    <span class="keyword">return</span> wrap</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_text</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">'Hello world'</span>)</div><div class="line">decorated = decor(print_taxt)</div><div class="line">decorated()</div><div class="line">/*</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decor</span><span class="params">(func)</span>:</span></div><div class="line">    print(<span class="string">'========'</span>)</div><div class="line">    func()</div><div class="line">    print(<span class="string">'========'</span>)</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_text</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">'Hello world'</span>)</div><div class="line">decorated = decor(print_text)</div><div class="line">*/</div></pre></td></tr></table></figure>
+<p>Using @ (decorate):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decor</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap</span><span class="params">()</span>:</span></div><div class="line">        print(<span class="string">'========'</span>)</div><div class="line">        func()</div><div class="line">        print(<span class="string">'========'</span>)</div><div class="line"><span class="meta">@decor</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_text</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">'Hello world'</span>)</div><div class="line">print_text()</div><div class="line">/*</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decor</span><span class="params">(func)</span>:</span></div><div class="line">    print(<span class="string">'========'</span>)</div><div class="line">    func()</div><div class="line">    print(<span class="string">'========'</span>)</div><div class="line"><span class="meta">@decor</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_text</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">'Hello world'</span>)</div><div class="line">print_text</div></pre></td></tr></table></figure>
+<p>result:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">========</div><div class="line">Hello world</div><div class="line">========</div></pre></td></tr></table></figure>
+<h2 id="Object-Oriented-Programming-OOP"><a href="#Object-Oriented-Programming-OOP" class="headerlink" title="Object-Oriented Programming (OOP)"></a>Object-Oriented Programming (OOP)</h2><h3 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h3><p>The class describes what the object will be, but is separate from the object itself .</p>
+<p>You can use the same class as a buleprint for creating multiple different objects.</p>
+<p><strong>开头字母大写！This is a good hobby!</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init</span><span class="params">(self, color, legs)</span>:</span>  <span class="comment">#__init__表示函数名取函数自身</span></div><div class="line">        self.color = color</div><div class="line">        self.legs = legs</div><div class="line">felix = Cat(<span class="string">'ginger'</span>, <span class="number">4</span>)  <span class="comment">#object的属性</span></div></pre></td></tr></table></figure>
+<p><strong>init : This is called when an instance (object) of the class is created , using the class name as a function.</strong></p>
+<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><p>All methods must have <strong>self</strong> as their first parameter</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, color)</span>:</span></div><div class="line">        self.name = name</div><div class="line">        self.color = color</div><div class="line">    </div><div class="line">    /*<span class="function"><span class="keyword">def</span> <span class="title">bark</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">'Woof!'</span>)*/</div><div class="line">fido = Dog(<span class="string">'Fido'</span>, <span class="string">'brown'</span>)</div><div class="line">print(fido.name)</div><div class="line">fido.bark()</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; Fido</div><div class="line">&gt;&gt;&gt; Woof!</div></pre></td></tr></table></figure>
+<h3 id="Class-attributes"><a href="#Class-attributes" class="headerlink" title="Class attributes"></a>Class attributes</h3><p>This is applies whrn you call an undefined</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class Rectangle:</div><div class="line">    def __init__(self, width, height):</div><div class="line">        self.width = width</div><div class="line">        self.height = height</div><div class="line">rect = Rectangle(7,8)</div><div class="line">print(rect.color)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">AttributeError: &apos;Rectangle&apos; object has no attribute &apos;color&apos;</div></pre></td></tr></table></figure>
+<hr>
+
+<h2 id="声明："><a href="#声明：" class="headerlink" title="声明："></a>声明：</h2><p><strong>欢迎转载，转载时请注明出处</strong><br><strong><a href="https://JacobYRJ.github.io" target="_blank" rel="external">JacobYRJ</a></strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/19/Github-Pages有时无法访问问题解决/" rel="next" title="Github Pages有时无法访问问题解决">
+                <i class="fa fa-chevron-left"></i> Github Pages有时无法访问问题解决
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/12/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="JacobYRJ" />
+          <p class="site-author-name" itemprop="name">JacobYRJ</p>
+           
+              <p class="site-description motion-element" itemprop="description">Fighting!Fighting!Fighting</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Control-Structures"><span class="nav-number">1.</span> <span class="nav-text">Control Structures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean-Logic"><span class="nav-number">1.1.</span> <span class="nav-text">Boolean Logic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operator-Precedence"><span class="nav-number">1.2.</span> <span class="nav-text">Operator Precedence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List"><span class="nav-number">1.3.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Functions"><span class="nav-number">1.4.</span> <span class="nav-text">Functions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exceptions"><span class="nav-number">2.</span> <span class="nav-text">Exceptions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exception-Handing"><span class="nav-number">2.1.</span> <span class="nav-text">Exception Handing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OR"><span class="nav-number">2.2.</span> <span class="nav-text">OR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functional-Programming"><span class="nav-number">3.</span> <span class="nav-text">Functional Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lambda"><span class="nav-number">3.1.</span> <span class="nav-text">Lambda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">3.2.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Filter"><span class="nav-number">3.3.</span> <span class="nav-text">Filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#generators-yield"><span class="nav-number">3.4.</span> <span class="nav-text">generators(yield)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decorators"><span class="nav-number">3.5.</span> <span class="nav-text">Decorators( @ )</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-Oriented-Programming-OOP"><span class="nav-number">4.</span> <span class="nav-text">Object-Oriented Programming (OOP)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Class"><span class="nav-number">4.1.</span> <span class="nav-text">Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Methods"><span class="nav-number">4.2.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-attributes"><span class="nav-number">4.3.</span> <span class="nav-text">Class attributes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明："><span class="nav-number">5.</span> <span class="nav-text">声明：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JacobYRJ</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jacobyrj';
+      var disqus_identifier = '2016/10/20/Python例子小结/';
+
+      var disqus_title = "Python例子小结";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+	
+		 <script type="text/javascript"> 
+		(function(){ 
+		var appid = 'cysYLLjQg'; 
+		var conf = '7e9de3f34bb4f7e6ef9a8d077b7406fd'; 
+		var width = window.innerWidth || document.documentElement.clientWidth; 
+		if (width < 960) { 
+		window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+		<script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+	
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("n9eXnIy0IFoUCLrw6D0SgPa2-gzGzoHsz", "SQWCDRNfKamzvkE0z5WSqqkr");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

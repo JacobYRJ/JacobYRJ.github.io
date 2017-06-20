@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -27,9 +27,12 @@
 
 
 
+
+
+
   
   
-  <link href="/VEN/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -63,9 +66,9 @@
 
 
 
-<link href="/VEN/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -77,51 +80,65 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
 
 
 
-<meta name="description" content="fighting!fighting!fighting!">
+<meta name="description" content="Fighting!Fighting!Fighting">
 <meta property="og:type" content="website">
 <meta property="og:title" content="BREF">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="BREF">
-<meta property="og:description" content="fighting!fighting!fighting!">
+<meta property="og:description" content="Fighting!Fighting!Fighting">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BREF">
-<meta name="twitter:description" content="fighting!fighting!fighting!">
+<meta name="twitter:description" content="Fighting!Fighting!Fighting">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
       userId: '0',
       author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
 
 
   <title> BREF </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
+
+
+
+
 
 
 
@@ -142,26 +159,30 @@
  ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">BREF</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BREF</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">人生苦短</p>
+      
   </div>
-  <p class="site-subtitle">人生苦短</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -200,26 +221,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-comments">
-          <a href="/comments" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
-            
-            comments
-          </a>
-        </li>
-      
 
       
     </ul>
@@ -227,6 +228,8 @@
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -241,13 +244,23 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/03/Ubuntu下Nginx+gunicorn部署Django/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JacobYRJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BREF">
+    </span>
 
     
       <header class="post-header">
@@ -259,8 +272,8 @@
             
               
                 
-                <a class="post-title-link" href="/Django-Web框架摘要-四/2016/11/21/" itemprop="url">
-                  Django-Web框架摘要(四)
+                <a class="post-title-link" href="/2017/05/03/Ubuntu下Nginx+gunicorn部署Django/" itemprop="url">
+                  Ubuntu下Nginx+gunicorn部署Django
                 </a>
               
             
@@ -269,13 +282,21 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-11-21T16:22:43+08:00" content="2016-11-21">
-              2016-11-21
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-03T00:00:00+08:00">
+                2017-05-03
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -283,29 +304,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/Django-Web框架摘要-四/2016/11/21/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Django-Web框架摘要-四/2016/11/21/" itemprop="commentsCount"></span>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/03/Ubuntu下Nginx+gunicorn部署Django/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/03/Ubuntu下Nginx+gunicorn部署Django/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
           
-          
-             <span id="/Django-Web框架摘要-四/2016/11/21/" class="leancloud_visitors" data-flag-title="Django-Web框架摘要(四)">
-               &nbsp; | &nbsp;
+             <span id="/2017/05/03/Ubuntu下Nginx+gunicorn部署Django/" class="leancloud_visitors" data-flag-title="Ubuntu下Nginx+gunicorn部署Django">
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">Pengunjung </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -319,14 +348,17 @@
       
         
           
-          站点管理对于某一类网站， 管理界面 是基础设施中非常重要的一部分。 这是以网页和有限的可信任管理者为基础的界面，它可以让你添加，编辑和删除网站内容。 一些常见的例子： 你可以用这个界面发布博客，后台的网站管理者用它来润色读者提交的内容，你的客户用你给他们建立的界面工具更新新闻并发布在网站上，这些都是
+          做后台开发，不光需要python的基础知识和Django框架的熟悉，还应该需要知道具体怎么部署一个服务器，包括服务器的性能，处理并发的能力，否则一个项目就算做出来也只能自我安慰。
+尽管网上关于这类部署的教程有很多，但是不太详细，所以作为同样是新手的我先踩踩坑，为各位大佬垫垫底。
+一、基础知识ngin
           ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Django-Web框架摘要-四/2016/11/21/#more" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/03/Ubuntu下Nginx+gunicorn部署Django/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
@@ -339,7 +371,10 @@
       
     </div>
 
+
     <footer class="post-footer">
+      
+
       
 
       
@@ -356,13 +391,23 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/14/那些年在win下填过的Django坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JacobYRJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BREF">
+    </span>
 
     
       <header class="post-header">
@@ -374,8 +419,8 @@
             
               
                 
-                <a class="post-title-link" href="/Django-Web框架摘要-三/2016/11/13/" itemprop="url">
-                  Django Web框架摘要(三)
+                <a class="post-title-link" href="/2017/03/14/那些年在win下填过的Django坑/" itemprop="url">
+                  那些年在win下填过的Django坑
                 </a>
               
             
@@ -384,13 +429,21 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-11-13T20:29:32+08:00" content="2016-11-13">
-              2016-11-13
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-14T00:00:00+08:00">
+                2017-03-14
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -398,29 +451,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/Django-Web框架摘要-三/2016/11/13/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Django-Web框架摘要-三/2016/11/13/" itemprop="commentsCount"></span>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/14/那些年在win下填过的Django坑/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/14/那些年在win下填过的Django坑/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
           
-          
-             <span id="/Django-Web框架摘要-三/2016/11/13/" class="leancloud_visitors" data-flag-title="Django Web框架摘要(三)">
-               &nbsp; | &nbsp;
+             <span id="/2017/03/14/那些年在win下填过的Django坑/" class="leancloud_visitors" data-flag-title="那些年在win下填过的Django坑">
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">Pengunjung </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -434,15 +495,15 @@
       
         
           
-          模型在当代 Web 应用中，主观逻辑经常牵涉到与数据库的交互。 数据库驱动网站 在后台连接数据库服务器，从中取出一些数据，然后在 Web 页面用漂亮的格式展示这些数据。 这个网站也可能会向访问者提供修改数据库数据的方法。
-由于先天具备 Python 简单而强大的数据库查询执行方法，Django 非常
+          导言对于大多数在win下做开发的道友来说，坑就像无底洞永远填不完，还一个接一个。最近我的电脑硬盘被win10的自动更新摧毁了，但很多写好的配置，安装的资源包都没有备份，于是所有东西都要重新开始。然后我从anaconda下载到Django成功启动项目遇到好几个之前初学时没留意到的坑，也就是这些坑，为了
           ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Django-Web框架摘要-三/2016/11/13/#more" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/14/那些年在win下填过的Django坑/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
@@ -455,7 +516,10 @@
       
     </div>
 
+
     <footer class="post-footer">
+      
+
       
 
       
@@ -472,13 +536,23 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/12/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JacobYRJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BREF">
+    </span>
 
     
       <header class="post-header">
@@ -490,8 +564,8 @@
             
               
                 
-                <a class="post-title-link" href="/Django-Web框架摘要-二/2016/10/29/" itemprop="url">
-                  Django Web框架摘要(二)
+                <a class="post-title-link" href="/2017/03/12/hello-world/" itemprop="url">
+                  Hello World
                 </a>
               
             
@@ -500,13 +574,21 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T20:41:53+08:00" content="2016-10-29">
-              2016-10-29
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-12T23:13:52+08:00">
+                2017-03-12
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -514,29 +596,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/Django-Web框架摘要-二/2016/10/29/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Django-Web框架摘要-二/2016/10/29/" itemprop="commentsCount"></span>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/12/hello-world/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/12/hello-world/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
           
-          
-             <span id="/Django-Web框架摘要-二/2016/10/29/" class="leancloud_visitors" data-flag-title="Django Web框架摘要(二)">
-               &nbsp; | &nbsp;
+             <span id="/2017/03/12/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">Pengunjung </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -550,16 +640,16 @@
       
         
           
-          模板（Template）模板用法直接将HTML硬编码到你的视图里却并不是一个好主意。 让我们来看一下为什么：
-
-对页面设计进行的任何改变都必须对 Python 代码进行相应的修改。 站点设计的修改往往比底层 Python 代码的修改要频繁得多，因此如果可以在不进行 Python 代码修改的情况下变更
+          Welcome to JacobYRJ’s Blog! 
+好久没有更新了，主要原因有两个，一个是电脑硬盘坏了，hexo文件没保存全部丢失T-T，所以我想更新就会覆盖掉Github的repo，其次要还原的过程非常艰辛，所以一直拖着。另外一个原因是忙着面试的事，在拼命赶Django的学习进度和刷面试题，
           ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Django-Web框架摘要-二/2016/10/29/#more" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/12/hello-world/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
@@ -572,7 +662,10 @@
       
     </div>
 
+
     <footer class="post-footer">
+      
+
       
 
       
@@ -589,13 +682,23 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/20/Python例子小结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JacobYRJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BREF">
+    </span>
 
     
       <header class="post-header">
@@ -607,123 +710,7 @@
             
               
                 
-                <a class="post-title-link" href="/Django-Web框架摘要(一)/2016/10/29/" itemprop="url">
-                  Django Web框架摘要(一)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T14:16:52+08:00" content="2016-10-29">
-              2016-10-29
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/Django-Web框架摘要(一)/2016/10/29/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Django-Web框架摘要(一)/2016/10/29/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/Django-Web框架摘要(一)/2016/10/29/" class="leancloud_visitors" data-flag-title="Django Web框架摘要(一)">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">Pengunjung </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          本文是Blog主在学习Django时为了方便记忆和加深理解而写，所以部分内容可能无法详述，但是，可以帮助初学者遇到相关问题时提供便利。摘录自：http://djangobook.py3k.cn/2.0/
-介绍Django：简介：Django：一个可以使Web开发工作愉快并且高效的Web开发框架。 使
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Django-Web框架摘要(一)/2016/10/29/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/Python基础例子小结/2016/10/20/" itemprop="url">
+                <a class="post-title-link" href="/2016/10/20/Python例子小结/" itemprop="url">
                   Python例子小结
                 </a>
               
@@ -733,13 +720,21 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-20T17:11:37+08:00" content="2016-10-20">
-              2016-10-20
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-20T00:00:00+08:00">
+                2016-10-20
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -747,29 +742,37 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/Python基础例子小结/2016/10/20/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Python基础例子小结/2016/10/20/" itemprop="commentsCount"></span>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/20/Python例子小结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/20/Python例子小结/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
           
-          
-             <span id="/Python基础例子小结/2016/10/20/" class="leancloud_visitors" data-flag-title="Python例子小结">
-               &nbsp; | &nbsp;
+             <span id="/2016/10/20/Python例子小结/" class="leancloud_visitors" data-flag-title="Python例子小结">
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">Pengunjung </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -786,14 +789,15 @@
           Control StructuresBoolean Logic1231 == 1 and 2 == 2  1 == 2 or 2 == 2   not 1 &gt; 7
 123True  True  False
 Operator Precedence
-List123456number = 3thin
+List12345number = 3thing
           ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Python基础例子小结/2016/10/20/#more" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/20/Python例子小结/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
@@ -806,7 +810,10 @@ List123456number = 3thin
       
     </div>
 
+
     <footer class="post-footer">
+      
+
       
 
       
@@ -823,13 +830,23 @@ List123456number = 3thin
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/19/Github-Pages有时无法访问问题解决/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JacobYRJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BREF">
+    </span>
 
     
       <header class="post-header">
@@ -841,7 +858,7 @@ List123456number = 3thin
             
               
                 
-                <a class="post-title-link" href="/Github-Pages-Problem/2016/10/19/" itemprop="url">
+                <a class="post-title-link" href="/2016/10/19/Github-Pages有时无法访问问题解决/" itemprop="url">
                   Github Pages有时无法访问问题解决
                 </a>
               
@@ -851,13 +868,21 @@ List123456number = 3thin
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-19T17:42:04+08:00" content="2016-10-19">
-              2016-10-19
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-19T00:00:00+08:00">
+                2016-10-19
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -865,29 +890,37 @@ List123456number = 3thin
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/Github-Pages-Problem/2016/10/19/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Github-Pages-Problem/2016/10/19/" itemprop="commentsCount"></span>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/19/Github-Pages有时无法访问问题解决/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/19/Github-Pages有时无法访问问题解决/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
           
-          
-             <span id="/Github-Pages-Problem/2016/10/19/" class="leancloud_visitors" data-flag-title="Github Pages有时无法访问问题解决">
-               &nbsp; | &nbsp;
+             <span id="/2016/10/19/Github-Pages有时无法访问问题解决/" class="leancloud_visitors" data-flag-title="Github Pages有时无法访问问题解决">
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">Pengunjung </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -901,14 +934,16 @@ List123456number = 3thin
       
         
           
-          Github Pages有时无法访问问题解决Blog主这个星期会到学校后，本来想着上上我亲爱的小博客，看看有没有评论员什么的，却突然发现上不了了，首页还是能正常打开，但comments 和其他类似的分页却死活打不开，Blog主我一开始就蒙了，以为是配置文件上出错了，找来找去找不到，后来就干脆执行1h
+          Github Pages有时无法访问问题Blog主这个星期会到学校后，本来想着上上我亲爱的小博客，看看有没有评论员什么的，却突然发现上不了了，首页还是能正常打开，但comments 和其他类似的分页却死活打不开，Blog主我一开始就蒙了，以为是配置文件上出错了，找来找去找不到，后来就干脆执行
+1he
           ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Github-Pages-Problem/2016/10/19/#more" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/19/Github-Pages有时无法访问问题解决/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
@@ -921,7 +956,10 @@ List123456number = 3thin
       
     </div>
 
+
     <footer class="post-footer">
+      
+
       
 
       
@@ -938,13 +976,23 @@ List123456number = 3thin
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/18/Hexo搭建Blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JacobYRJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BREF">
+    </span>
 
     
       <header class="post-header">
@@ -956,8 +1004,8 @@ List123456number = 3thin
             
               
                 
-                <a class="post-title-link" href="/hexo写Blog/2016/10/18/" itemprop="url">
-                  hexo搭建Blog
+                <a class="post-title-link" href="/2016/10/18/Hexo搭建Blog/" itemprop="url">
+                  Hexo搭建Blog
                 </a>
               
             
@@ -966,13 +1014,21 @@ List123456number = 3thin
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-18T10:45:00+08:00" content="2016-10-18">
-              2016-10-18
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-18T00:00:00+08:00">
+                2016-10-18
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -980,29 +1036,37 @@ List123456number = 3thin
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/hexo写Blog/2016/10/18/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="hexo写Blog/2016/10/18/" itemprop="commentsCount"></span>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/18/Hexo搭建Blog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/18/Hexo搭建Blog/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
           
-          
-             <span id="/hexo写Blog/2016/10/18/" class="leancloud_visitors" data-flag-title="hexo搭建Blog">
-               &nbsp; | &nbsp;
+             <span id="/2016/10/18/Hexo搭建Blog/" class="leancloud_visitors" data-flag-title="Hexo搭建Blog">
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">Pengunjung </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1018,12 +1082,13 @@ List123456number = 3thin
           
           书接上上一回！上上一回讲了用jeklly写Blog，不知道你们做的怎么样？Blog主第一次做出来的Blog就是用jeklly弄的，图片就不放上来了，因为Blog现在已经改用Hexo了，就不再折腾了（我才不会告诉你第一个Blog有多么简洁！）此处应会有人问为什么要换成Hexo而不继续用Jeklly呢？
           ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/hexo写Blog/2016/10/18/#more" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/18/Hexo搭建Blog/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1036,7 +1101,10 @@ List123456number = 3thin
       
     </div>
 
+
     <footer class="post-footer">
+      
+
       
 
       
@@ -1053,13 +1121,23 @@ List123456number = 3thin
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/11/水仙花数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JacobYRJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BREF">
+    </span>
 
     
       <header class="post-header">
@@ -1071,7 +1149,7 @@ List123456number = 3thin
             
               
                 
-                <a class="post-title-link" href="/水仙花数/2016/10/11/" itemprop="url">
+                <a class="post-title-link" href="/2016/10/11/水仙花数/" itemprop="url">
                   水仙花数
                 </a>
               
@@ -1081,13 +1159,21 @@ List123456number = 3thin
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-11T13:49:49+08:00" content="2016-10-11">
-              2016-10-11
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-11T00:00:00+08:00">
+                2016-10-11
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -1095,29 +1181,37 @@ List123456number = 3thin
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/水仙花数/2016/10/11/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="水仙花数/2016/10/11/" itemprop="commentsCount"></span>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/11/水仙花数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/11/水仙花数/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
           
-          
-             <span id="/水仙花数/2016/10/11/" class="leancloud_visitors" data-flag-title="水仙花数">
-               &nbsp; | &nbsp;
+             <span id="/2016/10/11/水仙花数/" class="leancloud_visitors" data-flag-title="水仙花数">
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">Pengunjung </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1133,12 +1227,13 @@ List123456number = 3thin
           
           用python写水仙花数前几天上matlab的时候，老师布置的一道作业，用matlab写水仙花数，鉴于Blog主是学python的，所以就用了python写，写的时候偶然发现两个以前学习时候没有留意到的细节，所以特意写发个blog分享一下！ 至于什么事水仙花数，呵呵，请善于利用搜索工具！下面介绍两种
           ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/水仙花数/2016/10/11/#more" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/11/水仙花数/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1151,7 +1246,10 @@ List123456number = 3thin
       
     </div>
 
+
     <footer class="post-footer">
+      
+
       
 
       
@@ -1168,13 +1266,23 @@ List123456number = 3thin
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/08/用Jekll写Blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JacobYRJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BREF">
+    </span>
 
     
       <header class="post-header">
@@ -1186,8 +1294,8 @@ List123456number = 3thin
             
               
                 
-                <a class="post-title-link" href="/Jeklly/2016/10/08/" itemprop="url">
-                  用Jeklly写Blog
+                <a class="post-title-link" href="/2016/10/08/用Jekll写Blog/" itemprop="url">
+                  用Jekll写Blog
                 </a>
               
             
@@ -1196,13 +1304,21 @@ List123456number = 3thin
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-08T18:39:57+08:00" content="2016-10-08">
-              2016-10-08
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-08T00:00:00+08:00">
+                2016-10-08
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -1210,29 +1326,37 @@ List123456number = 3thin
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/Jeklly/2016/10/08/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Jeklly/2016/10/08/" itemprop="commentsCount"></span>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/08/用Jekll写Blog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/08/用Jekll写Blog/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
           
-          
-             <span id="/Jeklly/2016/10/08/" class="leancloud_visitors" data-flag-title="用Jeklly写Blog">
-               &nbsp; | &nbsp;
+             <span id="/2016/10/08/用Jekll写Blog/" class="leancloud_visitors" data-flag-title="用Jekll写Blog">
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">Pengunjung </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -1246,14 +1370,15 @@ List123456number = 3thin
       
         
           
-            哈，先说明一下Blog猪现在只是一名刚踏进程序猿大坑的大三狗，写Blog这件事也是从一个星期前开始的，虽然有点晚了，但毕竟亡羊补牢还是来的及。那么现在来分享一下开Blog的一些血泪史吧，同时也让即将或将写Blog路上同志做一个参考(P.S 既然不是大能，所以请多多包涵！如果有疑问或者不同的见解欢
+          哈，先说明一下Blog猪现在只是一名刚踏进程序猿大坑的大三狗，写Blog这件事也是从一个星期前开始的，虽然有点晚了，但毕竟亡羊补牢还是来的及。那么现在来分享一下开Blog的一些血泪史吧，同时也让即将或将写Blog路上同志做一个参考(P.S 既然不是大能，所以请多多包涵！如果有疑问或者不同的见解欢迎@
           ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Jeklly/2016/10/08/#more" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/08/用Jekll写Blog/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1265,123 +1390,11 @@ List123456number = 3thin
     <div>
       
     </div>
+
 
     <footer class="post-footer">
       
 
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/hello-world/2016/10/08/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-08T16:33:29+08:00" content="2016-10-08">
-              2016-10-08
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/hello-world/2016/10/08/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="hello-world/2016/10/08/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/hello-world/2016/10/08/" class="leancloud_visitors" data-flag-title="Hello World">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">Pengunjung </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/hello-world/2016/10/08/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
       
 
       
@@ -1399,7 +1412,7 @@ List123456number = 3thin
 
   
 
-
+          
           </div>
           
 
@@ -1425,31 +1438,29 @@ List123456number = 3thin
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
                alt="JacobYRJ" />
           <p class="site-author-name" itemprop="name">JacobYRJ</p>
-          <p class="site-description motion-element" itemprop="description">fighting!fighting!fighting!</p>
+           
+              <p class="site-description motion-element" itemprop="description">Fighting!Fighting!Fighting</p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">10</span>
-              <span class="site-state-item-name">posts</span>
-            </a>
-          </div>
 
           
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">tags</span>
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
+          
+
+          
+
           
 
         </nav>
@@ -1458,17 +1469,6 @@ List123456number = 3thin
 
         <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/JacobYRJ" target="_blank" title="github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  github
-                </a>
-              </span>
-            
-          
         </div>
 
         
@@ -1477,7 +1477,12 @@ List123456number = 3thin
         
         
 
+        
+
+
       </section>
+
+      
 
       
 
@@ -1501,6 +1506,7 @@ List123456number = 3thin
   <span class="author" itemprop="copyrightHolder">JacobYRJ</span>
 </div>
 
+
 <div class="powered-by">
   Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
@@ -1512,15 +1518,20 @@ List123456number = 3thin
   </a>
 </div>
 
+
         
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
   </div>
 
   
@@ -1543,74 +1554,88 @@ List123456number = 3thin
 
 
 
-  
-  <script type="text/javascript" src="/VEN/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/VEN/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/VEN/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/VEN/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/VEN/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/VEN/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
-  
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
 
 
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"JacobYRJ"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
   
-    
-    <script src="/VEN/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jacobyrj';
+      var disqus_identifier = 'index.html';
+
+      var disqus_title = "";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+
+    </script>
   
 
 
 
 
+
+
+
+
+
+
+
+	
+		<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cysYLLjQg"></script>
+	
 
 
   
@@ -1725,6 +1750,11 @@ List123456number = 3thin
     });
   </script>
 
+
+
+  
+
+  
 
 
   
